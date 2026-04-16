@@ -56,7 +56,7 @@ main()
 """
 
 # Q2:
-
+"""
 class Train:
     def __init__(self, TrainIdNumber, Route):
         self.__TrainIdNumber = TrainIdNumber
@@ -117,4 +117,4 @@ flag = station2.AddTrain(Train4)
 if flag == False:
     print("Station is full")
 
-
+"""
