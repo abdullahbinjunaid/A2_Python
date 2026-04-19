@@ -62,7 +62,7 @@ main()
 #Q2
 
 
-
+'''
 Queue = [""]*100
 QueueHead = -1
 QueueTail = -1
@@ -91,8 +91,8 @@ def Dequeue():
         return "False"
     elif QueueHead == QueueTail:
         Value = Queue[QueueHead]
-        QueueHead == -1
-        QueueTail == -1
+        QueueHead = -1
+        QueueTail = -1
         return Value
     else:
         Value = Queue[QueueHead]
@@ -107,8 +107,10 @@ def ReadData():
         data = f.readline().strip()
         while data != "":
             Enqueue(data)
+            data = f.readline().strip()
 
 def Compress():
+    NewString = ""
     value = Dequeue()
     Vcount = 1
     while value != "False":
@@ -117,9 +119,9 @@ def Compress():
         if value == OldValue:
             Vcount += 1 
         else:
-            NewString = OldValue + str(Vcount)
+            NewString += OldValue + str(Vcount)
             Vcount = 1
-        value = Dequeue()
+    
     return NewString
 
 
@@ -129,4 +131,50 @@ def main():
     print(NewString)
 
 main()
+'''
 
+
+
+#Q3
+"""
+array = [None]*10
+
+def RecursiveCount(ArrayCopy, NumberElements, DataToFind):
+    if NumberElements == 0:                         # base case: no elements left
+        return 0
+    elif ArrayCopy[0] == DataToFind:                # first element matches
+        return 1 + RecursiveCount(ArrayCopy[1:], NumberElements - 1, DataToFind)
+    else:                                           # first element does not match
+        return RecursiveCount(ArrayCopy[1:], NumberElements - 1, DataToFind)
+    
+
+
+def SplitData(Data):
+    Result      = [""] * 4      # array to store 4 statements
+    Index       = 0             # current position in Result
+    CurrentWord = ""            # builds up each statement character by character
+ 
+    for char in Data:
+        if char == ";":                     # semicolon marks end of a statement
+            Result[Index] = CurrentWord     # store completed statement
+            Index += 1
+            CurrentWord = ""                # reset for next statement
+        else:
+            CurrentWord += char             # keep building current statement
+ 
+    return Result
+
+IntArray = [0, 5, 1, 2, 5, 9, 9, 6, 5, 0]
+ 
+Count = RecursiveCount(IntArray, 10, 0)
+print("Count of 0s found:", Count)
+ 
+# ── Part 3(b)(i) ── Store the string 
+CodeString = "x=0;y=1;x=x+y;y++;"
+ 
+# ── Part 3(b)(iii) ── Call SplitData() and output each element
+SplitArray = SplitData(CodeString)
+for line in SplitArray:
+    print(line)
+
+"""
