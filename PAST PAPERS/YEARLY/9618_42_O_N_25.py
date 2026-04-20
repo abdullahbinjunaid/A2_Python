@@ -104,4 +104,36 @@ print("\n", end="")
 print(RecursiveBinarySearch(Arr,0,19,12))
 '''
 
+#Q3
+TreeArray = [[-1 for i in range(3)] for i in range]
+RootPointer = -1
+FreeNode = 0
 
+def AddNode(Data):
+    global FreeNode
+    global RootPointer
+    if FreeNode == 50:
+        print("Tree is full")
+        return
+    TreeArray[FreeNode][1] = Data
+    TreeArray[FreeNode][0] = -1
+    TreeArray[FreeNode][2] = -1
+    NewNode = FreeNode
+    FreeNode += 1 
+    if RootPointer == -1:
+        RootPointer = NewNode
+        return
+    CurrentNode = RootPointer
+    while True:
+        if Data < TreeArray[CurrentNode][1]:        # go left
+            if TreeArray[CurrentNode][0] == -1:     # left is empty, insert here
+                TreeArray[CurrentNode][0] = NewNode
+                return
+            else:
+                CurrentNode = TreeArray[CurrentNode][0]
+        else:                                        # go right
+            if TreeArray[CurrentNode][2] == -1:     # right is empty, insert here
+                TreeArray[CurrentNode][2] = NewNode
+                return
+            else:
+                CurrentNode = TreeArray[CurrentNode][2]
