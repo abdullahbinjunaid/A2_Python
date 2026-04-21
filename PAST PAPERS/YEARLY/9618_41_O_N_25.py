@@ -118,3 +118,53 @@ if flag == False:
     print("Station is full")
 
 """
+
+
+# Q3:
+class Record:
+    def __init__(self,Key,String):
+        self.Key = Key
+        self.String = String
+
+HashTable = []
+
+
+def InitialiseHashTable():
+    global HashTable
+    HashTable = [[Record(-1,"")]*10 for i in range(100)]
+
+def Hash(key):
+    return key % 100
+
+def InsertData(Obj):
+    global HashTable
+    value = Hash(Obj.Key)
+    i = 0
+    while HashTable[value][i] == None:
+        i += 1
+    HashTable[value][i] = Obj
+
+def ReadData():
+    import os
+    file_path = os.path.dirname(__file__)
+    file = os.path.join(file_path , "HashTableData.txt")
+    with open(file,"r") as f:
+        for Data in f:
+            Data = Data.strip()    
+            print(Data)
+            i = 0
+            while Data[i] != ",":
+                i += 1
+                print(i)
+            key = Data[0:i]
+            string = Data[i+1:]
+            Object = Record(int(key),string)
+            InsertData(Object)
+
+def GetRecord(Find):
+
+
+
+
+
+        

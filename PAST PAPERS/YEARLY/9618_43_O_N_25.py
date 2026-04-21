@@ -169,10 +169,10 @@ IntArray = [0, 5, 1, 2, 5, 9, 9, 6, 5, 0]
 Count = RecursiveCount(IntArray, 10, 0)
 print("Count of 0s found:", Count)
  
-# ── Part 3(b)(i) ── Store the string 
+
 CodeString = "x=0;y=1;x=x+y;y++;"
  
-# ── Part 3(b)(iii) ── Call SplitData() and output each element
+
 SplitArray = SplitData(CodeString)
 for line in SplitArray:
     print(line)
