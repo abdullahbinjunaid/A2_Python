@@ -105,24 +105,37 @@ print(RecursiveBinarySearch(Arr,0,19,12))
 '''
 
 #Q3
-TreeArray = [[-1 for i in range(3)] for i in range]
-RootPointer = -1
-FreeNode = 0
 
+
+
+TreeArray   = [[-1, -1, -1] for _ in range(50)]
+RootPointer = -1
+FreeNode    = 0
+
+# ── Part 3(b) ── AddNode() 
 def AddNode(Data):
-    global FreeNode
+    global TreeArray
     global RootPointer
+    global FreeNode
+
+    # Check if tree is full
     if FreeNode == 50:
-        print("Tree is full")
+        print("The tree is full")
         return
-    TreeArray[FreeNode][1] = Data
-    TreeArray[FreeNode][0] = -1
-    TreeArray[FreeNode][2] = -1
-    NewNode = FreeNode
-    FreeNode += 1 
+
+    # Store data in the next free node
+    TreeArray[FreeNode][1] = Data       # set data
+    TreeArray[FreeNode][0] = -1         # left pointer  = null
+    TreeArray[FreeNode][2] = -1         # right pointer = null
+    NewNode   = FreeNode
+    FreeNode += 1
+
+    # If tree is empty, new node becomes root
     if RootPointer == -1:
         RootPointer = NewNode
         return
+
+    # Traverse the tree to find the correct position
     CurrentNode = RootPointer
     while True:
         if Data < TreeArray[CurrentNode][1]:        # go left
@@ -137,3 +150,31 @@ def AddNode(Data):
                 return
             else:
                 CurrentNode = TreeArray[CurrentNode][2]
+
+# ── Part 3(d) ── WriteAllToFile()
+def WriteAllToFile():
+    try:
+        with open("Tree.txt", "w") as f:
+            for i in range(50):
+                left  = TreeArray[i][0]
+                data  = TreeArray[i][1]
+                right = TreeArray[i][2]
+                f.write(str(left) + "," + str(data) + "," + str(right) + "\n")
+        print("Tree successfully written to Tree.txt")
+    except Exception as e:
+        print("Error writing to file:", e)
+
+
+
+import os
+
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "TreeData.txt")
+
+with open(file_path, "r") as f:
+    for line in f:
+        value = line.strip()
+        if value != "":
+            AddNode(int(value))
+
+
+WriteAllToFile()
