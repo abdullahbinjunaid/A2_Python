@@ -162,6 +162,7 @@ def ReadData():
             InsertData(Object)
 
 def GetRecord(Find):
+    pass
 
 
 
