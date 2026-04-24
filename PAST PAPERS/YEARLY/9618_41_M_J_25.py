@@ -92,7 +92,7 @@ def ReadData():
     
     return Arr
 
-arr = ReadData() 
+ 
 
 def SplitData(DataArray):
     Red = []
@@ -126,6 +126,39 @@ def SplitData(DataArray):
     print(Green)                                
     print(Orange)                                
     print(Pink)                                
-    print(Yellow)                                
+    print(Yellow)
+    StoreData(Red , "Red.txt")
+    StoreData(Blue , "Blue.txt")
+    StoreData(Green , "Green.txt")
+    StoreData(Orange , "Orange.txt")
+    StoreData(Yellow , "Yellow.txt")
+    StoreData(Pink , "Pink.txt")
 
-SplitData(arr)
+
+
+def StoreData(DataToStore , filename):
+    import os
+    file_path = os.path.dirname(__file__)
+    file_name = os.path.join(file_path,filename)
+
+    if os.path.exists(file_name):
+        with open(file_name , "a") as f:
+            for i in DataToStore:
+                f.write(i)
+                f.write("\n")
+    else:
+        print("The text file doesn't exists")
+
+
+
+def main():
+    arr = ReadData()
+    SplitData(arr)
+
+
+main()
+
+
+
+
+#Q3
