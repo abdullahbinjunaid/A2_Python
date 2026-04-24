@@ -73,7 +73,7 @@ print(HeadPointer,TailPointer,NumberItems)
 #Q2:
 
 
-
+'''
 def ReadData():
     Arr = []
     import os
@@ -159,6 +159,73 @@ def main():
 main()
 
 
-
-
+'''
+'''
 #Q3
+
+class Node:
+    def __init__(self,NodeData):
+        self.NodeData = NodeData
+        self.LeftNode = -1
+        self.RightNode = -1
+
+    def GetLeft(self):
+        return self.LeftNode
+    def GetRight(self):
+        return self.RightNode
+    def GetData(self):
+        return self.NodeData
+    def SetLeft(self,Node):
+        self.LeftNode = Node
+    def setRight(self,Node):
+        self.RightNode = Node
+
+
+class Tree:
+    def __init__(self,FirstNode):
+        self.FirstNode = FirstNode
+    def GetRootNode(self):
+        return self.FirstNode
+    def Insert(self,Node):
+        flag = False
+        current = self.FirstNode
+        while flag == False:
+            
+            if Node.GetData() < current.GetData():
+                if current.GetLeft() == -1:
+                    current.SetLeft(Node)
+                    flag = True
+                else:
+                    current = current.GetLeft()
+            else:
+    
+                if current.GetRight() == -1:
+                    current.setRight(Node)
+                    flag = True
+                else:
+                    current = current.GetRight()
+                
+
+
+def OutputInOrder(Node):
+    if Node!= -1:
+        OutputInOrder(Node.GetLeft())
+        print(Node.GetData() , end=" ")
+        OutputInOrder(Node.GetRight())
+
+
+def main():
+    Node1 = Node(10)
+    Node2 = Node(20)
+    Node3 = Node(5)
+    Node4 = Node(15)
+    Node5 = Node(7)
+    BinaryTree = Tree(Node1)
+    BinaryTree.Insert(Node2)
+    BinaryTree.Insert(Node3)
+    BinaryTree.Insert(Node4)
+    BinaryTree.Insert(Node5)
+    OutputInOrder(BinaryTree.GetRootNode())
+
+main()
+'''

@@ -119,7 +119,7 @@ if flag == False:
 
 """
 
-
+'''
 # Q3:
 class Record:
     def __init__(self,Key,String):
@@ -140,7 +140,7 @@ def InsertData(Obj):
     global HashTable
     value = Hash(Obj.Key)
     i = 0
-    while HashTable[value][i] == None:
+    while i < 10 and HashTable[value][i].Key != -1:
         i += 1
     HashTable[value][i] = Obj
 
@@ -162,10 +162,21 @@ def ReadData():
             InsertData(Object)
 
 def GetRecord(Find):
-    pass
+    global HashTable
+    HashValue = Hash(Find)
+    i = 0
+    for i in range(10):
+        if HashTable[HashValue][i].Key == Find:
+            return HashTable[HashValue][i].String
+    return "Not Found"
 
+def main():
+    InitialiseHashTable()
+    ReadData()
+    for i in range(5):
+        data = int(input("enter an integer "))
+        print(GetRecord(data))
+    
+main()
 
-
-
-
-        
+'''        

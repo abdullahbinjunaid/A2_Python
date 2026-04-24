@@ -106,13 +106,12 @@ print(RecursiveBinarySearch(Arr,0,19,12))
 
 #Q3
 
-
-
+'''
 TreeArray   = [[-1, -1, -1] for _ in range(50)]
 RootPointer = -1
 FreeNode    = 0
 
-# ── Part 3(b) ── AddNode() 
+
 def AddNode(Data):
     global TreeArray
     global RootPointer
@@ -127,7 +126,7 @@ def AddNode(Data):
     TreeArray[FreeNode][1] = Data       # set data
     TreeArray[FreeNode][0] = -1         # left pointer  = null
     TreeArray[FreeNode][2] = -1         # right pointer = null
-    NewNode   = FreeNode
+    NewNode = FreeNode
     FreeNode += 1
 
     # If tree is empty, new node becomes root
@@ -151,7 +150,7 @@ def AddNode(Data):
             else:
                 CurrentNode = TreeArray[CurrentNode][2]
 
-# ── Part 3(d) ── WriteAllToFile()
+
 def WriteAllToFile():
     try:
         with open("Tree.txt", "w") as f:
@@ -178,3 +177,4 @@ with open(file_path, "r") as f:
 
 
 WriteAllToFile()
+'''
