@@ -13,26 +13,20 @@ def Unknown(x,y):
 
 
 def IterativeUnknown(x,y):
-    if x < y:
-        counter = 1
-        while x < y:
-            total = x + y
-            print(total)
-            x = x + 1
-            counter = counter * 2    
-        return counter  
-    else:
-        if x == y:
-            return 1
-        else:
-            counter = 1  
-            while x > y:
-                total = x + y 
-                print(x + y)
-                x = x - 1
-                counter = counter // 2
+    def iterativeunknown(x, y):
+    count = 1
 
-            return counter
+    while x != y:
+        print(x + y)
+        if x < y:
+            x += 1
+            count = count * 2
+        else:
+            x -= 1
+            count = count // 2
+
+    return count
+            
             
 
 #----MAIN PROGRAM----
