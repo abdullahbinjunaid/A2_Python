@@ -130,6 +130,8 @@ def main():
 
 main()
 '''        
+
+'''
 #Q3
 Animal = [None]*20
 Colour = [None]*10
@@ -155,15 +157,15 @@ def PopAnimal():
         print("The stack is empty")
         return ""
     else:
-        ReturnData = Animal[AnimalTopPointer]
+        ReturnData = Animal[AnimalTopPointer - 1]
         AnimalTopPointer = AnimalTopPointer - 1
-        return True
+        return ReturnData
 
 
 def PushColour(Data):
     global Colour
     global ColourTopPointer
-    if ColourTopPointer == 20:
+    if ColourTopPointer == 10:
         print("The Stack is full")
         return False
     else:
@@ -179,9 +181,9 @@ def PopColour():
         print("The stack is empty")
         return ""
     else:
-        ReturnData = Animal[ColourTopPointer]
+        ReturnData = Colour[ColourTopPointer - 1]
         ColourTopPointer = ColourTopPointer - 1
-        return True
+        return ReturnData
 
 
 
@@ -213,12 +215,16 @@ def OutputItem():
     if ItemColour == "":
         print(PushAnimal(ItemAnimal))
         print("No colour")
-    if ItemAnimal == "":
+    elif ItemAnimal == "":
         print(PushColour(ItemColour))
         print("No animal")
-    
+    else:
+        
+        print(f"{ItemColour} {ItemAnimal}")
+
 ReadData()
 OutputItem()
 OutputItem()
 OutputItem()
 OutputItem()
+'''
