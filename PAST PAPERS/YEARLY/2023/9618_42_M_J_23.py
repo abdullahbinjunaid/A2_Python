@@ -121,7 +121,7 @@ for i in range(NumberOfItems):
 '''
 
 #Q3
-
+'''
 class Employee:
     def __init__(self,HourlyPay,EmployeeNumber,JobTitle):
         self.HourlyPay = HourlyPay #float
@@ -142,9 +142,9 @@ class Employee:
 class Manager(Employee):
     def __init__(self, HourlyPay, EmployeeNumber, JobTitle,BonusValue):
         super().__init__(HourlyPay, EmployeeNumber, JobTitle)
-        self.BonuValue = BonusValue
+        self.BonusValue = BonusValue
     def SetPay(self,WeekNumber,Hoursworked):
-        Hoursworked = (100 + self.BonuValue) * Hoursworked
+        Hoursworked = (1 + self.BonusValue/100) * Hoursworked
         super().SetPay(WeekNumber,Hoursworked)
 
 #File pathing 
@@ -163,15 +163,15 @@ if os.path.exists(file1):
         Title = "" 
         Temp = "" # For checking if employee is a manager or not
         for i in range(8):
-            pay = float(f.readline())
-            Id = f.readline()
-            Temp = f.readline()
+            pay = float(f.readline().strip())
+            Id = f.readline().strip()
+            Temp = f.readline().strip()
             try:
                 Bonus = float(Temp)
-                Title = f.readline()
-                EmployeeArray[i] = Employee(pay,Id,Title,Bonus)
+                Title = f.readline().strip()
+                EmployeeArray[i] = Manager(pay,Id,Title,Bonus)
             except:
-                Title = f.readline()
+                Title = f.readline().strip()
                 EmployeeArray[i] = Employee(pay,Id,Title)
 else:
     print("The file doesn't exists")
@@ -181,4 +181,19 @@ def EnterHours():
     file2 = os.path.join(file_path,"HoursWeek1.txt")
     if os.path.exists(file2):
         with open(file2,"r") as f:
-            
+            for i in range(8):
+                EmployeeID = f.readline()
+                Bonus = float(f.readline())
+                for j in range(8):
+                    if EmployeeArray[j].GetEmployeeNumber() == EmployeeID:
+                        EmployeeArray[j].SetPay(1,Bonus)
+
+    else:
+        print("The file doesn't exists")
+
+
+
+EnterHours()
+for Y in range(0, 8):
+    print(EmployeeArray[Y].GetEmployeeNumber(), " ", EmployeeArray[Y].GetTotalPay())
+'''
