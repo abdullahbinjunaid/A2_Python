@@ -130,5 +130,55 @@ class Employee:
         self.PayYear2022 = [0.0 for i in range(52)] #Array of datatype float
     def GetEmployeeNumber(self):
         return self.EmployeeNumber
-    def SetPay():
-         
+    def SetPay(self,WeekNumber,Hoursworked):
+        pay = self.HourlyPay * Hoursworked
+        self.PayYear2022[WeekNumber] = pay 
+    def GetTotalPay(self):
+        Total = 0.0
+        for i in self.PayYear2022:
+            Total += i
+        return Total
+#Child Class
+class Manager(Employee):
+    def __init__(self, HourlyPay, EmployeeNumber, JobTitle,BonusValue):
+        super().__init__(HourlyPay, EmployeeNumber, JobTitle)
+        self.BonuValue = BonusValue
+    def SetPay(self,WeekNumber,Hoursworked):
+        Hoursworked = (100 + self.BonuValue) * Hoursworked
+        super().SetPay(WeekNumber,Hoursworked)
+
+#File pathing 
+import os
+file_path = os.path.dirname(__file__)
+file1= os.path.join(file_path,"Employees.txt")
+
+
+
+EmployeeArray = [None]*8
+if os.path.exists(file1):
+    with open(file1,"r") as f:
+        pay = 0.0
+        Id = "" 
+        Bonus = 0.0 
+        Title = "" 
+        Temp = "" # For checking if employee is a manager or not
+        for i in range(8):
+            pay = float(f.readline())
+            Id = f.readline()
+            Temp = f.readline()
+            try:
+                Bonus = float(Temp)
+                Title = f.readline()
+                EmployeeArray[i] = Employee(pay,Id,Title,Bonus)
+            except:
+                Title = f.readline()
+                EmployeeArray[i] = Employee(pay,Id,Title)
+else:
+    print("The file doesn't exists")
+
+def EnterHours():
+    file_path = os.path.dirname(__file__)
+    file2 = os.path.join(file_path,"HoursWeek1.txt")
+    if os.path.exists(file2):
+        with open(file2,"r") as f:
+            
