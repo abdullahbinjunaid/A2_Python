@@ -1,3 +1,3 @@
-# A2_Python
+# A2 Python
 
-## Hello this is my python learning repo
+## A repo consisting all basics and algorithms required in python (It will cover Alevels syllabus and practical skills)
